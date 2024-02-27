@@ -2,7 +2,7 @@ import streamlit as st
 import yfinance as yf
 from datetime import datetime, timedelta
 import pandas as pd
-from fbprophet import Prophet
+from prophet import Prophet
 import matplotlib.pyplot as plt
 
 # Function to load stock data
