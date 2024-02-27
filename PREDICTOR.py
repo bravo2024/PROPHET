@@ -56,7 +56,7 @@ def main():
     symbol = st.text_input("Enter Stock Symbol (e.g., AAPL for Apple Inc.)")
     timeframe = st.selectbox("Select Timeframe", ['1d', '1wk', '1mo'])
 
-     if symbol:
+    if symbol:
         df = load_data(symbol, timeframe)
         if not df.empty:
             model = train_model(df)
