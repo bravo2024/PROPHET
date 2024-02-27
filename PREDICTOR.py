@@ -61,7 +61,7 @@ def main():
         df = load_data(symbol, timeframe)
         if not df.empty:
             model = train_model(df)
-            forecast_periods = st.slider("Select Number of Forecast Periods", min_value=1, max_value=365, value=30)
+            forecast_periods = st.slider("Select Number of Forecast Periods", min_value=1, max_value=365, value=3)
             future = model.make_future_dataframe(periods=forecast_periods)
             forecast = predict(model, future)
            
