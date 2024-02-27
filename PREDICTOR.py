@@ -55,7 +55,7 @@ def main():
 
     # User input for stock symbol and timeframe
     symbol = st.text_input("Enter Stock Symbol (e.g., AAPL for Apple Inc.)")
-    timeframe = st.selectbox("Select Timeframe", ['1d', '1wk', '1mo'])
+    timeframe = st.selectbox("Select Timeframe", ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'])
 
     if symbol:
         df = load_data(symbol, timeframe)
