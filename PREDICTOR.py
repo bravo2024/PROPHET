@@ -38,7 +38,7 @@ def predict(model, future):
     return forecast
 
 # Function to display results
-def display_results(df, forecast):
+def display_results(df, forecast[:-1]):
     # Plot actual vs. predicted closing prices
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(df['Date'], df['Close'], label='Actual', color='blue')
