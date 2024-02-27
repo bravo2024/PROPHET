@@ -77,7 +77,7 @@ def main():
             forecast = predict(model, future)
 
             # Display results in columns
-            col1, col2 = st.beta_columns(2)
+            col1, col2 = st.columns(2)
             with col1:
                 st.write("### Actual Data")
                 st.write(df)
