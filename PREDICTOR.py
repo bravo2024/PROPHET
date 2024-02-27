@@ -56,19 +56,14 @@ def main():
     symbol = st.text_input("Enter Stock Symbol (e.g., AAPL for Apple Inc.)")
     timeframe = st.selectbox("Select Timeframe", ['1d', '1wk', '1mo'])
 
-    if symbol:
-        # Load data
+     if symbol:
         df = load_data(symbol, timeframe)
-
         if not df.empty:
-            # Train Prophet model
             model = train_model(df)
-
-            # Make future dataframe for forecasting
-            future = model.make_future_dataframe(periods=30)  # Forecast next 30 days
-
-            # Make predictions
+            forecast_periods = st.slider("Select Number of Forecast Periods", min_value=1, max_value=365, value=30)
+            future = model.make_future_dataframe(periods=forecast_periods)
             forecast = predict(model, future)
+           
 
             # Display results in columns
             col1, col2 = st.columns(2)
