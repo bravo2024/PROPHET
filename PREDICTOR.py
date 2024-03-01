@@ -47,6 +47,7 @@ def display_results(df, forecast):
     # Plot actual vs. predicted closing prices
     forecast=forecast[:-1]
     fig, ax = plt.subplots(figsize=(10, 6))
+    st.write(df.tail(5))
     ax.plot(df['ds'], df['Close'], label='Actual', color='blue')
     ax.plot(forecast['ds'], forecast['yhat'], label='Predicted', color='red')
     ax.set_xlabel('Date')
