@@ -52,14 +52,16 @@ def display_results(df, forecast):
         df = df.rename(columns={'Date': 'ds'})
     
     forecast=forecast[:-1]
-    fig, ax = plt.subplots(figsize=(10, 6))
-    st.write(df.tail(5))
-    ax.plot(df['ds'], df['Close'], label='Actual', color='blue')
-    ax.plot(forecast['ds'], forecast['yhat'], label='Predicted', color='red')
+    fig, ax = plt.subplots(figsize=(12, 8))  # Adjust figure size
+    ax.plot(df['ds'], df['Close'], label='Actual', color='blue', linestyle='-')
+    ax.plot(forecast['ds'], forecast['yhat'], label='Predicted', color='red', linestyle='--')
+    ax.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='pink', alpha=0.3)  # Fill confidence interval
     ax.set_xlabel('Date')
     ax.set_ylabel('Closing Price')
     ax.set_title('Actual vs. Predicted Closing Prices')
     ax.legend()
+    plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
+    plt.tight_layout()  # Adjust layout
     st.pyplot(fig)
 
 def main():
