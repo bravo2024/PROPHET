@@ -72,8 +72,9 @@ def display_results(df, forecast):
 
     # Display forecasted closing prices as line plot
     st.write("### Forecasted Closing Prices")
-    st.area_chart(forecast.set_index('ds')[['yhat_lower', 'yhat_upper']], use_container_width=True)
-    st.line_chart(forecast.set_index('ds')['yhat'])
+    forecast_chart_data = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].rename(columns={'ds': 'index'}).set_index('index')
+    st.area_chart(forecast_chart_data[['yhat_lower', 'yhat_upper']])
+    st.line_chart(forecast_chart_data['yhat'])
 
 
 
