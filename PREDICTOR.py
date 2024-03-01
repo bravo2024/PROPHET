@@ -20,8 +20,11 @@ def load_data(symbol, timeframe, num_days=7):
 # Function to train Prophet model
 def train_model(df):
     # Rename columns to 'ds' and 'y' for Prophet
-    df = df.rename(columns={'Date': 'ds', 'Close': 'y'})
-
+    #df = df.rename(columns={'Date': 'ds', 'Close': 'y'})
+    if 'Datetime' in df.columns:
+        df = df.rename(columns={'Datetime': 'ds', 'Close': 'y'})
+    elif 'Date' in df.columns:
+        df = df.rename(columns={'Date': 'ds', 'Close': 'y'})
     # Initialize Prophet model
     model = Prophet()
 
