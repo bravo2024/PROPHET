@@ -52,20 +52,31 @@ def display_results(df, forecast):
         df = df.rename(columns={'Date': 'ds'})
     
     forecast=forecast[:-1]
-    fig, ax = plt.subplots(figsize=(12, 8))  # Adjust figure size
-    ax.plot(df['ds'], df['Close'], label='Actual', color='blue', linestyle='-')
-    ax.plot(forecast['ds'], forecast['yhat'], label='Predicted', color='red', linestyle='--')
-    ax.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='pink', alpha=0.3)  # Fill confidence interval
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Closing Price')
-    ax.set_title('Actual vs. Predicted Closing Prices')
-    ax.legend()
-    plt.xticks(rotation=45)
-    ax.autoscale(enable=True, axis='y', tight=True)  # Autoscale y-axis
-    plt.tight_layout()  # Adjust layout
+    #fig, ax = plt.subplots(figsize=(12, 8))  # Adjust figure size
+    #ax.plot(df['ds'], df['Close'], label='Actual', color='blue', linestyle='-')
+    #ax.plot(forecast['ds'], forecast['yhat'], label='Predicted', color='red', linestyle='--')
+    #ax.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='pink', alpha=0.3)  # Fill confidence interval
+    #ax.set_xlabel('Date')
+    #ax.set_ylabel('Closing Price')
+    #ax.set_title('Actual vs. Predicted Closing Prices')
+    #ax.legend()
+    #plt.xticks(rotation=45)
+    #ax.autoscale(enable=True, axis='y', tight=True)  # Autoscale y-axis
+    #plt.tight_layout()  # Adjust layout
     # Rotate x-axis labels for better readability
     #plt.tight_layout()  # Adjust layout
-    st.pyplot(fig)
+    #st.pyplot(fig)
+
+    st.write("### Actual Closing Prices")
+    st.line_chart(df.set_index('ds')['Close'])
+
+    # Display forecasted closing prices as line plot
+    st.write("### Forecasted Closing Prices")
+    st.area_chart(forecast.set_index('ds')[['yhat_lower', 'yhat_upper']], use_container_width=True)
+    st.line_chart(forecast.set_index('ds')['yhat'])
+
+
+
 
 def main():
     st.title("Live Stock Analysis")
