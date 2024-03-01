@@ -60,8 +60,11 @@ def display_results(df, forecast):
     ax.set_ylabel('Closing Price')
     ax.set_title('Actual vs. Predicted Closing Prices')
     ax.legend()
-    plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
+    plt.xticks(rotation=45)
+    ax.autoscale(enable=True, axis='y', tight=True)  # Autoscale y-axis
     plt.tight_layout()  # Adjust layout
+    # Rotate x-axis labels for better readability
+    #plt.tight_layout()  # Adjust layout
     st.pyplot(fig)
 
 def main():
