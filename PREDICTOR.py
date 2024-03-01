@@ -6,7 +6,7 @@ from prophet import Prophet
 import matplotlib.pyplot as plt
 
 # Function to load stock data
-def load_data(symbol, timeframe, num_days=100):
+def load_data(symbol, timeframe, num_days=7):
     # Fetch historical stock data from Yahoo Finance for the last 100 days
     end_date = datetime.now()
     start_date = end_date - timedelta(days=num_days)
