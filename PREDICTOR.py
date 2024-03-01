@@ -45,6 +45,12 @@ def predict(model, future):
 # Function to display results
 def display_results(df, forecast):
     # Plot actual vs. predicted closing prices
+
+    if 'Datetime' in df.columns:
+        df = df.rename(columns={'Datetime': 'ds'})
+    elif 'Date' in df.columns:
+        df = df.rename(columns={'Date': 'ds'})
+    
     forecast=forecast[:-1]
     fig, ax = plt.subplots(figsize=(10, 6))
     st.write(df.tail(5))
