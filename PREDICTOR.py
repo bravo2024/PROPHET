@@ -25,6 +25,8 @@ def train_model(df):
         df = df.rename(columns={'Datetime': 'ds', 'Close': 'y'})
     elif 'Date' in df.columns:
         df = df.rename(columns={'Date': 'ds', 'Close': 'y'})
+
+    df['ds'] = df['ds'].dt.tz_localize(None)
     # Initialize Prophet model
     model = Prophet()
 
