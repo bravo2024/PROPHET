@@ -67,25 +67,25 @@ def display_results(df, forecast):
     #plt.tight_layout()  # Adjust layout
     #st.pyplot(fig)
 
-    plt.figure(figsize=(12, 8))
+    fig, ax = plt.subplots(figsize=(12, 8))
 
     # Plot actual closing prices
-    plt.plot(df['ds'], df['Close'], label='Actual', color='blue')
+    ax.plot(df['ds'], df['Close'], label='Actual', color='blue')
 
     # Plot forecasted closing prices with confidence interval
-    plt.plot(forecast['ds'], forecast['yhat'], label='Forecast', color='red')
-    plt.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='pink', alpha=0.3)
+    ax.plot(forecast['ds'], forecast['yhat'], label='Forecast', color='red')
+    ax.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='pink', alpha=0.3)
 
     # Add labels and title
-    plt.xlabel('Date')
-    plt.ylabel('Closing Price')
-    plt.title('Actual vs. Forecasted Closing Prices')
-    plt.legend()
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Closing Price')
+    ax.set_title('Actual vs. Forecasted Closing Prices')
+    ax.legend()
     plt.xticks(rotation=45)
 
     # Show plot
     plt.tight_layout()
-    st.pyplot()
+    st.pyplot(fig)
 
 
 
