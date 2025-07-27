@@ -6,14 +6,45 @@ from prophet import Prophet
 import matplotlib.pyplot as plt
 
 # Function to load stock data
+# def load_data(symbol, timeframe, num_days=44):
+#     # Fetch historical stock data from Yahoo Finance for the last 100 days
+#     end_date = datetime.now()
+#     start_date = end_date - timedelta(days=num_days)
+#     df = yf.download(symbol, start=start_date, end=end_date, interval=timeframe)
+
+#     # Reset index for compatibility with Prophet
+#     df.reset_index(inplace=True)
+
+#     return df
+
+
 def load_data(symbol, timeframe, num_days=44):
-    # Fetch historical stock data from Yahoo Finance for the last 100 days
+    # Calculate date range
     end_date = datetime.now()
     start_date = end_date - timedelta(days=num_days)
+
+    # Download stock data from Yahoo Finance
     df = yf.download(symbol, start=start_date, end=end_date, interval=timeframe)
 
-    # Reset index for compatibility with Prophet
+    # Flatten MultiIndex columns if present (e.g., df.columns = [('Close', 'RELIANCE.NS'), ...])
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+
+    # Reset index to move Date/Datetime into a column
     df.reset_index(inplace=True)
+
+    # Validate required columns
+    if 'Close' not in df.columns:
+        raise ValueError("Missing 'Close' column in the Yahoo Finance data.")
+    if not any(col in df.columns for col in ['Date', 'Datetime']):
+        raise ValueError("Missing 'Date' or 'Datetime' column in the data.")
+
+    # Optional: Debug info (uncomment in Streamlit)
+    # import streamlit as st
+    # st.write("Yahoo Finance Data:")
+    # st.dataframe(df.head())
+    # st.write("Columns:", df.columns.tolist())
+    # st.write("Data Types:", df.dtypes)
 
     return df
 
