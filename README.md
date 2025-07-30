@@ -1,6 +1,6 @@
 # 📈 Real-Time Stock Price Forecasting using Prophet
 
-![Stock Forecast](docs/banner.png)
+![Stock Forecast](docs/ailab.png)
 
 A **Streamlit web app** that predicts near-future stock prices using **Facebook Prophet** and real-time historical market data from Yahoo Finance.  
 [Server Link] (https://prophet.vivekailab.com/)
