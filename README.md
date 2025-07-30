@@ -4,6 +4,7 @@
 
 A **Streamlit web app** that predicts near-future stock prices using **Facebook Prophet** and real-time historical market data from Yahoo Finance.  
 [Server Link] (https://prophet.vivekailab.com/)
+[Streamlit Backup] (https://prophetstock.streamlit.app/)
 
 ---
 
