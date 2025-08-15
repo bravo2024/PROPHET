@@ -7,7 +7,7 @@ import time
 
 # ---------- Tabs Setup ----------
 st.set_page_config(layout="wide")
-st.title('📊 vivekailab.com : Real-Time Stock Forecasting using Meta Prophet')
+st.title('vivekailab.com : Real-Time Market Forecasting using Meta Prophet')
 
 tabs = st.tabs([
     "📈 Forecasting",
@@ -19,7 +19,7 @@ tabs = st.tabs([
 
 # ---------- Shared Inputs ----------
 with st.sidebar:
-    ticker_symbol = st.text_input('Enter Stock Symbol (e.g., AAPL for Apple, RELIANCE.NS for RELIANCE):', 'AAPL')
+    ticker_symbol = st.text_input('Enter Ticker or Symbol (e.g., AAPL for Apple, RELIANCE.NS for RELIANCE):', 'AAPL')
     interval_options = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo']
     selected_interval = st.selectbox('Select Time Interval:', interval_options, index=3)
     forecast_periods = st.slider('Forecast Periods (future points)', 1, 50, 5)
@@ -285,3 +285,4 @@ with tabs[4]:
             st.error(f"Diagnostics Error: {e}")
     else:
         st.info("Run the forecast first to access diagnostics.")
+
