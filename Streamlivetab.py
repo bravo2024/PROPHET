@@ -7,7 +7,7 @@ import time
 
 # ---------- Tabs Setup ----------
 st.set_page_config(layout="wide")
-st.title('vivekailab.com : Real-Time Market Forecasting using Meta Prophet')
+st.title('Real-Time Market Forecasting using Meta Prophet by Vivek Bose')
 
 tabs = st.tabs([
     "📈 Forecasting",
@@ -285,4 +285,5 @@ with tabs[4]:
             st.error(f"Diagnostics Error: {e}")
     else:
         st.info("Run the forecast first to access diagnostics.")
+
 
