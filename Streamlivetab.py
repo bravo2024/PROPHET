@@ -6,7 +6,7 @@ import pandas as pd
 import time
 
 # ---------- Tabs Setup ----------
-st.set_page_config(layout="wide")
+st.set_page_config("Real-Time Market Forecasting by Vivek Bose" ,layout="wide")
 st.title('Real-Time Market Forecasting using Meta Prophet by Vivek Bose')
 
 tabs = st.tabs([
@@ -291,6 +291,7 @@ with tabs[4]:
             st.error(f"Diagnostics Error: {e}")
     else:
         st.info("Run the forecast first to access diagnostics.")
+
 
 
 
