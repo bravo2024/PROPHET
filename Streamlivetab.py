@@ -88,7 +88,10 @@ with tabs[0]:
         except Exception as e:
             st.error(f"Error: {e}")
     else:
-        st.info("Enter stock symbol and click ▶️ Run Forecast")
+        st.info("""
+Enter Stock/Crypto/Commodity Symbol from Yahoo Finance (e.g., US Stocks: `AAPL`, `MSFT`; Indian Stocks: `RELIANCE.NS`, `TCS.NS`; Crypto: `BTC-USD`, `ETH-USD`; Indices: `^NSEI`, `^DJI`; Commodities: `GC=F`, `CL=F`).  
+Click ▶️ Run Forecast to see predictions (typing a ticker overrides dropdown selection).
+""")
 
 # ---------- Tab 2: Model Insight ----------
 # with tabs[1]:
@@ -291,6 +294,7 @@ with tabs[4]:
             st.error(f"Diagnostics Error: {e}")
     else:
         st.info("Run the forecast first to access diagnostics.")
+
 
 
 
