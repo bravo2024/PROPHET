@@ -18,12 +18,60 @@ tabs = st.tabs([
 ])
 
 # ---------- Shared Inputs ----------
+# with st.sidebar:
+#     ticker_symbol = st.text_input('Enter Ticker or Symbol (e.g., AAPL for Apple, RELIANCE.NS for RELIANCE):', 'AAPL')
+#     interval_options = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo']
+#     selected_interval = st.selectbox('Select Time Interval:', interval_options, index=3)
+#     forecast_periods = st.slider('Forecast Periods (future points)', 1, 50, 5)
+#     run = st.button("▶️ Run Forecast")
+
+
+tickers_list = [
+    # US Stocks
+    'AAPL', 'MSFT', 'GOOG', 'TSLA', 'AMZN', 'FB', 'NFLX', 'NVDA', 'PYPL', 'INTC',
+    
+    # Indian Stocks
+    'RELIANCE.NS', 'TCS.NS', 'INFY.NS', 'HDFCBANK.NS', 'ICICIBANK.NS', 'LT.NS', 'SBIN.NS',
+    
+    # Cryptocurrencies
+    'BTC-USD', 'ETH-USD', 'BNB-USD', 'ADA-USD', 'XRP-USD', 'SOL-USD',
+    
+    # Indices
+    '^NSEI', '^NSEBANK', '^BSESN', '^DJI', '^GSPC', '^IXIC', '^FTSE', '^N225',
+    
+    # Commodities
+    'GC=F', 'CL=F', 'SI=F', 'NG=F', 'HG=F'
+]
+
 with st.sidebar:
-    ticker_symbol = st.text_input('Enter Ticker or Symbol (e.g., AAPL for Apple, RELIANCE.NS for RELIANCE):', 'AAPL')
-    interval_options = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo']
-    selected_interval = st.selectbox('Select Time Interval:', interval_options, index=3)
-    forecast_periods = st.slider('Forecast Periods (future points)', 1, 50, 5)
-    run = st.button("▶️ Run Forecast")
+    st.markdown("### 📈 Asset Symbol Options")
+
+    # Text input + dropdown
+    ticker_input = st.text_input("Type your ticker (overrides dropdown if filled):", "AAPL").upper()
+    ticker_options = [ticker_input] + [t for t in tickers_list if t != ticker_input]
+    ticker_symbol = st.selectbox("Or select any ticker from list:", ticker_options, index=0)
+
+    # Interval dropdown
+    interval_options = ['1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo']
+    selected_interval = st.selectbox("Select Time Interval:", interval_options, index=3)
+
+    # Forecast periods
+    forecast_periods = st.slider("Forecast Periods (future points)", 1, 50, 5)
+
+    # Run button
+    run = st.button("▶️ Run Forecast For Asset")
+
+    # Compact info
+
+
+# Display selections
+    st.write("Ticker:", ticker_symbol)
+    st.write("Interval:", selected_interval)
+    st.write("Forecast Periods:", forecast_periods)
+
+
+
+
 
 # ---------- Data Fetch ----------
 def fetch_data(ticker, interval):
@@ -294,6 +342,7 @@ with tabs[4]:
             st.error(f"Diagnostics Error: {e}")
     else:
         st.info("Run the forecast first to access diagnostics.")
+
 
 
 
