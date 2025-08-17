@@ -47,6 +47,12 @@ def apply_prophet(df, periods, interval):
         freq = str(int(interval[:-1])) + 'T'
     elif interval.endswith('h'):
         freq = str(int(interval[:-1])) + 'H'
+    elif interval == '1wk':
+        freq = 'W'
+    elif interval == '1mo':
+        freq = 'M'
+    elif interval == '3mo':
+        freq = '3M'
     else:
         freq = interval
 
@@ -285,5 +291,6 @@ with tabs[4]:
             st.error(f"Diagnostics Error: {e}")
     else:
         st.info("Run the forecast first to access diagnostics.")
+
 
 
