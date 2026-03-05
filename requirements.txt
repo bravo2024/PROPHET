@@ -1,6 +1,6 @@
 streamlit
-click
 yfinance
 pandas
 prophet
 matplotlib
+plotly
